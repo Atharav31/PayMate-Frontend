@@ -112,7 +112,10 @@ function Navbar() {
               </li>
             </ul>
           </div>
-          <div className="navbar-center">
+          <div
+            className="navbar-center"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
             <a className="btn btn-ghost text-xl" ref={logoRef}>
               PayMate
             </a>
