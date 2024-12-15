@@ -105,10 +105,10 @@ function Navbar() {
                 <a>Homepage</a>
               </li>
               <li>
-                <a>Portfolio</a>
+                <a>Login</a>
               </li>
               <li>
-                <a>About</a>
+                <a>Previous trips</a>
               </li>
             </ul>
           </div>

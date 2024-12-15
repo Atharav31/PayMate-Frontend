@@ -30,7 +30,6 @@ function App() {
       <Hero1 />
       <Hero2 />
       <Hero3 />
-
       <Footer />
     </>
   );

@@ -124,13 +124,13 @@ function Hero1() {
                 style={{ zIndex: 1000 }}
               >
                 <li>
-                  <a>Homepage</a>
+                  <a>Home</a>
                 </li>
                 <li>
-                  <a>Portfolio</a>
+                  <a>Previous Trips</a>
                 </li>
                 <li>
-                  <a>About</a>
+                  <a>Feedback</a>
                 </li>
               </ul>
             </div>
@@ -146,25 +146,6 @@ function Hero1() {
           </div>
 
           <div className="navbar-end">
-            <button
-              className="btn btn-ghost btn-circle"
-              ref={(el) => (buttonRefs.current[0] = el)}
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-            </button>
             <button
               className="btn btn-ghost btn-circle"
               ref={(el) => (buttonRefs.current[1] = el)}
@@ -203,6 +184,9 @@ function Hero1() {
               Simplify group expenses with our seamless tracking and sharing
               tools.
             </p>
+            <button className="btn btn-wide bg-white text-black hover:bg-black hover:text-white">
+              Get Started
+            </button>
           </div>
           <div ref={heroImageRef} style={{ transformStyle: "preserve-3d" }}>
             <img
