@@ -30,9 +30,11 @@ const Hero3 = () => {
           >
             <h1 className="text-5xl font-bold">Login now!</h1>
             <p className="py-6">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              Do you often find yourself losing track of your expenses while
+              traveling? Don’t worry, we’ve got your back! With our platform,
+              you can easily save and organize all your trip expenses in one
+              place. Sign in to your account today and take the first step
+              towards stress-free expense management for all your adventures.
             </p>
           </motion.div>
 
