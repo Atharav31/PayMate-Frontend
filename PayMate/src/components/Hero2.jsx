@@ -3,7 +3,14 @@ import { motion } from "framer-motion";
 const Hero2 = () => {
   return (
     <>
-      <div className="hero bg-base-200 min-h-screen bg-red-200">
+      <div
+        className="hero bg-base-200 min-h-screen bg-violet-200"
+        style={{
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
         <div className="hero-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 p-6">
           {Array(4)
             .fill("")

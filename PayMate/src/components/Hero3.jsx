@@ -1,12 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
+import backgroundImage from "../assets/Hero3.jpg";
 
 const Hero3 = () => {
   return (
     <div
       className="hero min-h-screen"
       style={{
-        backgroundImage: "url()",
+        backgroundImage: {
+          backgroundImage: `url(${backgroundImage})`,
+        },
       }}
     >
       <div className="hero-overlay bg-opacity-60"></div>
