@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import feature2 from "../assets/feature2.jpg";
 
 const Hero2 = () => {
   return (
@@ -20,11 +21,11 @@ const Hero2 = () => {
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.5 }} // Trigger animations every time section enters view
                 className="feature-card flex flex-col items-center"
               >
                 <img
-                  src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+                  src={feature2}
                   className="max-w-sm rounded-lg shadow-2xl mb-4"
                   alt={`Feature ${index + 1}`}
                 />

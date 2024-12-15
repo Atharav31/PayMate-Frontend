@@ -10,11 +10,17 @@ function Navbar() {
   useEffect(() => {
     const timeline = gsap.timeline();
 
-    // Animate the navbar itself
+    // Animate the navbar itself with a blur effect
     timeline.fromTo(
       navbarRef.current,
-      { y: -100, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
+      { y: -100, opacity: 0, filter: "blur(10px)" },
+      {
+        y: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.8,
+        ease: "power2.out",
+      }
     );
 
     // Animate the logo
@@ -28,17 +34,29 @@ function Navbar() {
     // Animate the dropdown menu
     timeline.fromTo(
       dropdownRef.current,
-      { x: -50, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+      { x: -50, opacity: 0, filter: "blur(10px)" },
+      {
+        x: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        duration: 0.6,
+        ease: "power2.out",
+      },
       "-0.4"
     );
 
-    // Animate the buttons sequentially
+    // Animate the buttons sequentially with a blur effect
     buttonRefs.current.forEach((button, index) => {
       timeline.fromTo(
         button,
-        { scale: 0.5, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" },
+        { scale: 0.5, opacity: 0, filter: "blur(10px)" },
+        {
+          scale: 1,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 0.5,
+          ease: "power2.out",
+        },
         `-0.3 + ${index * 0.2}` // Stagger animations
       );
     });

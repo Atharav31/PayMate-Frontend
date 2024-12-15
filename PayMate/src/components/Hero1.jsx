@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
-function Navbar() {
+function Hero1() {
   const navbarRef = useRef(null);
   const dropdownRef = useRef(null);
   const logoRef = useRef(null);
@@ -217,4 +217,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Hero1;
