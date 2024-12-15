@@ -2,7 +2,15 @@ import React from "react";
 
 function Navbar() {
   return (
-    <div>
+    <div
+      style={{
+        zIndex: 9999,
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+      }}
+    >
       <div className="navbar bg-base-100 fixed">
         <div className="navbar-start">
           <div className="dropdown">
@@ -28,7 +36,8 @@ function Navbar() {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 w-52 p-2 shadow"
+              style={{ zIndex: 1000 }}
             >
               <li>
                 <a>Homepage</a>
