@@ -1,15 +1,28 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import Footer from "./components/Footer";
+import { useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero1 from "./components/Hero1";
-import Login from "./components/Login";
 import Hero2 from "./components/Hero2";
 import Hero3 from "./components/Hero3";
 
+import Footer from "./components/Footer";
+import { gsap } from "gsap";
+
 function App() {
-  const [count, setCount] = useState(0);
+  useEffect(() => {
+    const timeline = gsap.timeline();
+    timeline
+      .fromTo(
+        ".navbar",
+        { y: -100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, ease: "power2.out" }
+      )
+      .fromTo(
+        ".hero",
+        { opacity: 0 },
+        { opacity: 1, duration: 1.5, ease: "power2.inOut" },
+        "-=0.5" // Overlap Hero1 with Navbar animation
+      );
+  }, []);
 
   return (
     <>

@@ -1,6 +1,49 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 function Navbar() {
+  const navbarRef = useRef(null);
+  const dropdownRef = useRef(null);
+  const logoRef = useRef(null);
+  const buttonRefs = useRef([]);
+
+  useEffect(() => {
+    const timeline = gsap.timeline();
+
+    // Animate the navbar itself
+    timeline.fromTo(
+      navbarRef.current,
+      { y: -100, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "power2.out" }
+    );
+
+    // Animate the logo
+    timeline.fromTo(
+      logoRef.current,
+      { scale: 0.5, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.6, ease: "elastic.out(1, 0.5)" },
+      "<0.2"
+    );
+
+    // Animate the dropdown menu
+    timeline.fromTo(
+      dropdownRef.current,
+      { x: -50, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
+      "-0.4"
+    );
+
+    // Animate the buttons sequentially
+    buttonRefs.current.forEach((button, index) => {
+      timeline.fromTo(
+        button,
+        { scale: 0.5, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.5, ease: "power2.out" },
+        `-0.3 + ${index * 0.2}` // Stagger animations
+      );
+    });
+  }, []);
+
   return (
     <div
       style={{
@@ -10,10 +53,11 @@ function Navbar() {
         left: 0,
         width: "100%",
       }}
+      ref={navbarRef}
     >
       <div className="navbar bg-base-100 fixed">
         <div className="navbar-start">
-          <div className="dropdown">
+          <div className="dropdown" ref={dropdownRef}>
             <div
               tabIndex={0}
               role="button"
@@ -51,12 +95,17 @@ function Navbar() {
             </ul>
           </div>
           <div className="navbar-center">
-            <a className="btn btn-ghost text-xl">PayMate</a>
+            <a className="btn btn-ghost text-xl" ref={logoRef}>
+              PayMate
+            </a>
           </div>
         </div>
 
         <div className="navbar-end">
-          <button className="btn btn-ghost btn-circle">
+          <button
+            className="btn btn-ghost btn-circle"
+            ref={(el) => (buttonRefs.current[0] = el)}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -72,7 +121,10 @@ function Navbar() {
               />
             </svg>
           </button>
-          <button className="btn btn-ghost btn-circle">
+          <button
+            className="btn btn-ghost btn-circle"
+            ref={(el) => (buttonRefs.current[1] = el)}
+          >
             <div className="indicator">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

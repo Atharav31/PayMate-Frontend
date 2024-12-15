@@ -4,7 +4,7 @@ const Hero2 = () => {
   return (
     <>
       <div
-        className="hero bg-base-200 min-h-screen bg-violet-200"
+        className="hero bg-base-200 min-h-screen"
         style={{
           backgroundSize: "cover",
           backgroundPosition: "center",
