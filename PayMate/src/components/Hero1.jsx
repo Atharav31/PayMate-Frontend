@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { useNavigate } from "react-router-dom";
 
 function Hero1() {
   const navbarRef = useRef(null);
@@ -8,6 +9,7 @@ function Hero1() {
   const buttonRefs = useRef([]);
   const heroTextRef = useRef(null);
   const heroImageRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const timeline = gsap.timeline();
@@ -184,7 +186,10 @@ function Hero1() {
               Simplify group expenses with our seamless tracking and sharing
               tools.
             </p>
-            <button className="btn btn-wide bg-white text-black hover:bg-black hover:text-white">
+            <button
+              className="btn btn-wide bg-white text-black hover:bg-black hover:text-white"
+              onClick={() => navigate("/functionality")}
+            >
               Get Started
             </button>
           </div>

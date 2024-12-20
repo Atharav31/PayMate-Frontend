@@ -1,11 +1,23 @@
 import { useEffect } from "react";
 import Navbar from "./components/Navbar";
-import Hero1 from "./components/Hero1";
-import Hero2 from "./components/Hero2";
-import Hero3 from "./components/Hero3";
-
 import Footer from "./components/Footer";
 import { gsap } from "gsap";
+import Main from "./components/Functionality/Main";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import Functionality from "./components/Functionality/Functionality";
+import Hero3 from "./components/Hero3";
+
+function AppLayout() {
+  return (
+    <>
+      <Navbar />
+
+      <Outlet />
+
+      <Footer />
+    </>
+  );
+}
 
 function App() {
   useEffect(() => {
@@ -24,15 +36,28 @@ function App() {
       );
   }, []);
 
-  return (
-    <>
-      <Navbar />
-      <Hero1 />
-      <Hero2 />
-      <Hero3 />
-      <Footer />
-    </>
-  );
+  const appLayout = createBrowserRouter([
+    {
+      path: "/",
+      element: <AppLayout />,
+      children: [
+        {
+          path: "/",
+          element: <Main />,
+        },
+        {
+          path: "/functionality",
+          element: <Functionality />,
+        },
+        {
+          path: "/login",
+          element: <Hero3 />,
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={appLayout} />;
 }
 
 export default App;

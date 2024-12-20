@@ -65,7 +65,6 @@ function Navbar() {
   return (
     <div
       style={{
-        zIndex: 9999,
         position: "fixed",
         top: 0,
         left: 0,
