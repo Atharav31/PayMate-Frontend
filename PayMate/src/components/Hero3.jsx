@@ -1,8 +1,50 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import backgroundImage from "../assets/Hero3.jpg";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import "react-toastify/dist/ReactToastify.css";
+import { login } from "../store/slice1";
+import { useNavigate } from "react-router-dom";
 
 const Hero3 = () => {
+  const [email, setEmail] = useState("");
+  const [signUp, setSignUp] = useState(false);
+  const nameRef = useRef(" ");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLoginClick = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/login",
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+      console.log("niche ka code");
+      if (response.status === 200) {
+        console.log("Login successful");
+        toast.success("Login Successful");
+        dispatch(login(response.data.user));
+        navigate("/loggedInUser");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Login Failed");
+    }
+  };
+
+  const handleSignUp = () => {
+    setSignUp(!signUp);
+    console.log(nameRef.current?.value, "name");
+  };
   return (
     <div
       className="hero min-h-screen"
@@ -46,7 +88,7 @@ const Hero3 = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <form className="card-body">
+            <form className="card-body" onSubmit={(e) => e.preventDefault()}>
               <motion.div
                 className="form-control"
                 initial={{ x: -50, opacity: 0 }}
@@ -58,12 +100,34 @@ const Hero3 = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
+                  onChange={(e) => setEmail(e.target.value)}
                   type="email"
                   placeholder="email"
                   className="input input-bordered"
                   required
                 />
               </motion.div>
+              {signUp ? (
+                <motion.div
+                  className="form-control"
+                  initial={{ x: 50, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <label className="label">
+                    <span className="label-text">Name</span>
+                  </label>
+                  <input
+                    type="name"
+                    ref={nameRef}
+                    placeholder="name"
+                    className="input input-bordered"
+                    required
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </motion.div>
+              ) : null}
               <motion.div
                 className="form-control"
                 initial={{ x: 50, opacity: 0 }}
@@ -79,12 +143,23 @@ const Hero3 = () => {
                   placeholder="password"
                   className="input input-bordered"
                   required
+                  onChange={(e) => setPassword(e.target.value)}
                 />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
+                <div className="flex justify-between">
+                  <label className="label">
+                    <a className="label-text-alt link link-hover">
+                      Forgot password?
+                    </a>
+                  </label>
+                  <label className="label">
+                    <a
+                      onClick={handleSignUp}
+                      className="label-text-alt link link-hover"
+                    >
+                      New user ? Register here
+                    </a>
+                  </label>
+                </div>
               </motion.div>
               <motion.div
                 className="form-control mt-6"
@@ -93,12 +168,24 @@ const Hero3 = () => {
                 transition={{ duration: 0.5, delay: 0.8 }}
                 viewport={{ once: true }}
               >
-                <button className="btn btn-primary">Login</button>
+                {signUp ? (
+                  <button className="btn btn-primary" onClick={handleSignUp}>
+                    Sign up
+                  </button>
+                ) : (
+                  <button
+                    className="btn btn-primary"
+                    onClick={handleLoginClick}
+                  >
+                    Login
+                  </button>
+                )}
               </motion.div>
             </form>
           </motion.div>
         </motion.div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
