@@ -19,7 +19,7 @@ const Hero3 = () => {
   const handleLoginClick = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/login",
+        "http://localhost:3000/api/login",
         {
           email,
           password,
@@ -41,9 +41,15 @@ const Hero3 = () => {
     }
   };
 
-  const handleSignUp = () => {
+  const handleSignUp = async () => {
     setSignUp(!signUp);
     console.log(nameRef.current?.value, "name");
+    const response = await axios.post("http://localhost:3000/api/signup", {
+      email,
+      password,
+      name: nameRef.current?.value,
+    });
+    console.log(response, "checking response");
   };
   return (
     <div
