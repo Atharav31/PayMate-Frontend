@@ -126,7 +126,7 @@ function Hero1() {
                 style={{ zIndex: 1000 }}
               >
                 <li>
-                  <a>Hom</a>
+                  <a>Home</a>
                 </li>
                 <li>
                   <a>Previous Trips</a>
