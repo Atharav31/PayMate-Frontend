@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "daisyui/dist/full.css";
+import Navbar from "../Navbar";
+import Footer from "../Footer";
 
 const Functionality = () => {
   const [formData, setFormData] = useState({
@@ -58,82 +60,84 @@ const Functionality = () => {
   };
 
   return (
-    <div className="flex pt-20 justify-center min-h-screen">
-      <div className="card w-96">
-        <div className="card-body">
-          <h2 className="card-title">Trip Details</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label className="label">
-                <span className="label-text">Trip Name</span>
-              </label>
-              <input
-                type="text"
-                name="tripName"
-                placeholder="Trip Name"
-                className="input input-bordered w-full"
-                value={formData.tripName}
-                onChange={handleChange}
-              />
-            </div>
-            <div className="mb-4">
-              <label className="label">
-                <span className="label-text">Friend's Name</span>
-              </label>
-              <div className="flex">
+    <>
+      <div className="flex pt-20 justify-center min-h-screen">
+        <div className="card w-96">
+          <div className="card-body">
+            <h2 className="card-title">Trip Details</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="mb-4">
+                <label className="label">
+                  <span className="label-text">Trip Name</span>
+                </label>
                 <input
                   type="text"
-                  name="friendName"
-                  placeholder="Friend's Name"
+                  name="tripName"
+                  placeholder="Trip Name"
                   className="input input-bordered w-full"
-                  value={formData.friendName}
+                  value={formData.tripName}
                   onChange={handleChange}
                 />
-                <button
-                  type="button"
-                  className="btn btn-secondary ml-2"
-                  onClick={handleAddFriend}
+              </div>
+              <div className="mb-4">
+                <label className="label">
+                  <span className="label-text">Friend's Name</span>
+                </label>
+                <div className="flex">
+                  <input
+                    type="text"
+                    name="friendName"
+                    placeholder="Friend's Name"
+                    className="input input-bordered w-full"
+                    value={formData.friendName}
+                    onChange={handleChange}
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-secondary ml-2"
+                    onClick={handleAddFriend}
+                  >
+                    Add
+                  </button>
+                </div>
+                <div className="mt-2">
+                  {friends.map((friend, index) => (
+                    <span key={index} className="badge badge-primary mr-2">
+                      {friend}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="mb-4">
+                <label className="label">
+                  <span className="label-text">Currency</span>
+                </label>
+                <select
+                  name="currency"
+                  className="select select-bordered w-full"
+                  value={formData.currency}
+                  onChange={handleChange}
                 >
-                  Add
+                  <option value="" disabled>
+                    Select Currency
+                  </option>
+                  {currencies.map((currency) => (
+                    <option key={currency.code} value={currency.code}>
+                      {currency.country} - {currency.symbol} ({currency.name})
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="card-actions justify-end">
+                <button type="submit" className="btn btn-primary w-full">
+                  Submit
                 </button>
               </div>
-              <div className="mt-2">
-                {friends.map((friend, index) => (
-                  <span key={index} className="badge badge-primary mr-2">
-                    {friend}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="mb-4">
-              <label className="label">
-                <span className="label-text">Currency</span>
-              </label>
-              <select
-                name="currency"
-                className="select select-bordered w-full"
-                value={formData.currency}
-                onChange={handleChange}
-              >
-                <option value="" disabled>
-                  Select Currency
-                </option>
-                {currencies.map((currency) => (
-                  <option key={currency.code} value={currency.code}>
-                    {currency.country} - {currency.symbol} ({currency.name})
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="card-actions justify-end">
-              <button type="submit" className="btn btn-primary w-full">
-                Submit
-              </button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
